@@ -1,0 +1,45 @@
+{
+  "version": 5,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 24
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "Default Config",
+      "description": "Default build using Unix Makefiles generator",
+      "generator": "Unix Makefiles",
+      "toolchainFile": "${sourceDir}/toolchain.cmake",
+      "binaryDir": "${sourceDir}/build/default",
+      "installDir": "install/default",
+      "cacheVariables": {
+        "CMAKE_INSTALL_MESSAGE": {
+          "type": "STRING",
+          "value": "LAZY"
+        }
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "default",
+      "configurePreset": "default",
+      "jobs": 8
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "default",
+      "configurePreset": "default",
+      "output": {
+        "outputOnFailure": true
+      },
+      "execution": {
+        "jobs": 8,
+        "scheduleRandom": true,
+        "noTestsAction": "default"
+      }
+    }
+  ]
+}
